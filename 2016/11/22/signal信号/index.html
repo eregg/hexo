@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>signal信号 | 学不可以已</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="信号基本概念 信号是软件中断，很多比较重要的应用程序都需要处理信号，信号提供了一种处理异步事件的方法，例如，终端用户键入中断键，会通过信号机制停止一个程序。首先，每一个信号都有一个名字，这些名字都是以3个字符SIG开头，例如，SIGABRT是夭折信号，当进程调用abort函数时产生这种信号，SIGALRM是闹钟信号，由alarm函数设置的定时器超时后将产生此信号。  有很多种情况下可以产生信号 当">
+<meta name="keywords" content="计算机,signal,信号,信号屏蔽字,信号捕捉动作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="signal信号">
+<meta property="og:url" content="http://eregg.com/2016/11/22/signal信号/index.html">
+<meta property="og:site_name" content="学不可以已">
+<meta property="og:description" content="信号基本概念 信号是软件中断，很多比较重要的应用程序都需要处理信号，信号提供了一种处理异步事件的方法，例如，终端用户键入中断键，会通过信号机制停止一个程序。首先，每一个信号都有一个名字，这些名字都是以3个字符SIG开头，例如，SIGABRT是夭折信号，当进程调用abort函数时产生这种信号，SIGALRM是闹钟信号，由alarm函数设置的定时器超时后将产生此信号。  有很多种情况下可以产生信号 当">
+<meta property="og:image" content="http://123.57.181.198/images/signal/1.jpg">
+<meta property="og:image" content="http://123.57.181.198/images/signal/2.png">
+<meta property="og:image" content="http://123.57.181.198/images/signal/3.png">
+<meta property="og:image" content="http://123.57.181.198/images/signal/1.jpg">
+<meta property="og:updated_time" content="2017-09-21T18:14:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="signal信号">
+<meta name="twitter:description" content="信号基本概念 信号是软件中断，很多比较重要的应用程序都需要处理信号，信号提供了一种处理异步事件的方法，例如，终端用户键入中断键，会通过信号机制停止一个程序。首先，每一个信号都有一个名字，这些名字都是以3个字符SIG开头，例如，SIGABRT是夭折信号，当进程调用abort函数时产生这种信号，SIGALRM是闹钟信号，由alarm函数设置的定时器超时后将产生此信号。  有很多种情况下可以产生信号 当">
+<meta name="twitter:image" content="http://123.57.181.198/images/signal/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="学不可以已" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学不可以已</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">青，取之于蓝，而青于蓝</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eregg.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-signal信号" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/22/signal信号/" class="article-date">
+  <time datetime="2016-11-22T01:40:27.000Z" itemprop="datePublished">2016-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      signal信号
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="信号基本概念"><a href="#信号基本概念" class="headerlink" title="信号基本概念"></a><a href="#信号基本概念" title="信号基本概念"></a>信号基本概念</h3><blockquote>
+<p>信号是软件中断，很多比较重要的应用程序都需要处理信号，信号提供了一种处理异步事件的方法，<br>例如，终端用户键入中断键，会通过信号机制停止一个程序。<br>首先，每一个信号都有一个名字，这些名字都是以3个字符SIG开头，例如，SIGABRT是夭折信号，<br>当进程调用abort函数时产生这种信号，SIGALRM是闹钟信号，由alarm函数设置的定时器超时后将产生此信号。</p>
+</blockquote>
+<h3 id="有很多种情况下可以产生信号"><a href="#有很多种情况下可以产生信号" class="headerlink" title="有很多种情况下可以产生信号"></a><a href="#有很多种情况下可以产生信号" title="有很多种情况下可以产生信号"></a>有很多种情况下可以产生信号</h3><ol>
+<li>当用户按下终端键时，引发终端产生的信号，在终端上按下Ctrl+c,可以产生中断信号</li>
+<li>硬件异常产生信号，除数为0，无效的内存引用等<br>例如对执行一个无效内存引用的进程产生SIGSEGV信号。</li>
+<li>进程调用kill()函数可将任意信号发送给任意进程</li>
+<li>调用kill命令，与3效果一样。</li>
+<li>当检测到某种软件条件已经发生，并应将其通知有关进程也产生信号，<br>例如 在管道的读端进程已经终止后，写进程将收到一个SIGPIPE信号<br>当进程中调用了alarm函数，当定时器超时会产生一个SIGALRM信号<blockquote>
+<p><strong><em>产生信号的事件对进程而言是随机出现的，进程不能简单测试一个变量来判断是否发生了一个信号，<br>而是必须提前告诉内核，在”此“信号发生时，该怎么处理。</em></strong></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="处理信号的三种行为"><a href="#处理信号的三种行为" class="headerlink" title="处理信号的三种行为"></a><a href="#处理信号的三种行为" title="处理信号的三种行为"></a>处理信号的三种行为</h3><ol>
+<li>忽略此信号</li>
+<li>捕捉信号</li>
+<li>执行系统默认动作&gt; 信号默认处理的5种行为，对于大多数信号的系统默认动作是终止该进程。</li>
+</ol>
+<ul>
+<li>Term   Default action is to terminate the process.终止当前进程</li>
+<li>Ign    Default action is to ignore the signal.忽略这个信号</li>
+<li>Core   Default action is to terminate the process and dump core (see core(5)). 终止当前进程并且生成一个core文件</li>
+<li>Stop   Default action is to stop the process.暂停当前进程</li>
+<li>Cont   Default action is to continue the process if it is currently stopped.继续当前进程</li>
+</ul>
+<h3 id="信号的种类"><a href="#信号的种类" class="headerlink" title="信号的种类"></a><a href="#信号的种类" title="信号的种类"></a>信号的种类</h3><p><img src="http://123.57.181.198/images/signal/1.jpg" alt="信号的种类"></p>
+<h3 id="信号集"><a href="#信号集" class="headerlink" title="信号集"></a><a href="#信号集" title="信号集"></a>信号集</h3><p><img src="http://123.57.181.198/images/signal/2.png" alt="信号集"></p>
+<blockquote>
+<p>信号集位于系统内核PCB进程控制块</p>
+<ul>
+<li>未决信号集，由内核自动控制，用户只有只读权限，不可以修改该信号集</li>
+<li>阻塞信号集，又称信号屏蔽字，该信号集由用户设置，</li>
+<li>信号处理动作，</li>
+</ul>
+<ol>
+<li>执行默认动作，</li>
+<li>忽略信号，</li>
+<li>捕捉 注意：SIGKILL和SIGSTOP不能被捕捉</li>
+</ol>
+</blockquote>
+<h3 id="信号控制原语"><a href="#信号控制原语" class="headerlink" title="信号控制原语"></a><a href="#信号控制原语" title="信号控制原语"></a>信号控制原语</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigemptyset</span><span class="params">(<span class="keyword">sigset_t</span> <em><span class="built_in">set</span>)</em></span></span>;将信号集清空</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigfillset</span><span class="params">(<span class="keyword">sigset_t</span> <span class="built_in">set</span>)</span></span>;initializes <span class="built_in">set</span> to full, including all signals.</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaddset</span><span class="params">(<span class="keyword">sigset_t</span> <em><span class="built_in">set</span>, <span class="keyword">int</span> signum)</em></span></span>;向信号集添加一个信号</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigdelset</span><span class="params">(<span class="keyword">sigset_t</span> <span class="built_in">set</span>, <span class="keyword">int</span> signum)</span></span>;从信号集删除一个信号</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigismember</span><span class="params">(<span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signum)</span></span>;判断信号集是否包含一个信号</div></pre></td></tr></table></figure>
+
+<h3 id="设置屏蔽字函数"><a href="#设置屏蔽字函数" class="headerlink" title="设置屏蔽字函数"></a><a href="#设置屏蔽字函数" title="设置屏蔽字函数"></a>设置屏蔽字函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigprocmask</span><span class="params">(<span class="keyword">int</span> how, <span class="keyword">const</span> <span class="keyword">sigset_t</span> <em><span class="built_in">set</span>, <span class="keyword">sigset_t</span> </em>oldset)</span></span>;将一个信号集设置到阻塞信号集中</div><div class="line">首先，若oldset是非空指针，那么进程的当前信号屏蔽字通过oldset返回。</div><div class="line">其次，若<span class="built_in">set</span>是个一个非空指针，则参数how指示如何修改当前的信号屏蔽字，</div><div class="line">how的可选值，SIG_BLOCK是或的操作，而SIG_SETMASK则是赋值操作。</div><div class="line">注意，不能阻塞SIGKILL和SIGSTOP信号。</div></pre></td></tr></table></figure>
+
+<p><img src="http://123.57.181.198/images/signal/3.png" alt=""></p>
+<h3 id="设置信号捕捉动作"><a href="#设置信号捕捉动作" class="headerlink" title="设置信号捕捉动作"></a><a href="#设置信号捕捉动作" title="设置信号捕捉动作"></a>设置信号捕捉动作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaction</span><span class="params">(<span class="keyword">int</span> signum, <span class="keyword">const</span> <span class="keyword">struct</span> sigaction <em>act, <span class="keyword">struct</span> sigaction </em>oldact)</span></span>;</div><div class="line">其中，参数signum是要检测或者修改其具体动作信号的编号，若act指针非空，则要修改其动作，</div><div class="line">如果oldset指针非空，则系统经由oldact指针返回该信号的上一个动作，此函数使用到的结构体如下：</div><div class="line"><span class="keyword">struct</span> sigaction &#123;</div><div class="line">               <span class="keyword">void</span>     (<em>sa_handler)(<span class="keyword">int</span>);<span class="comment">//信号处理程序的地址，或者SIG_IGN，或者SIG_DEF</span></em></div><div class="line">               <span class="keyword">void</span>     (sa_sigaction)(<span class="keyword">int</span>, <span class="keyword">siginfo_t</span> <em>, <span class="keyword">void</span> </em>);</div><div class="line">               <span class="keyword">sigset_t</span>   sa_mask;<span class="comment">//添加到信号屏蔽字的集合</span></div><div class="line">               <span class="keyword">int</span>        sa_flags;</div><div class="line">           &#125;;</div><div class="line">当更改信号动作时，如果sa_handler字段包含一个信号捕捉函数地址（不是常量SIG_IGN或SIG_DEF），</div><div class="line">则sa_mask字段说明了一个信号集，在调用该信号捕捉函数之前，这一信号集要加到进程的信号屏蔽字中，</div><div class="line">仅当从信号捕捉函数返回时在将进程的信号屏蔽字恢复为原先值。</div></pre></td></tr></table></figure>
+
+<p><img src="http://123.57.181.198/images/signal/1.jpg" alt=""></p>
+<blockquote>
+<p>举例理解上图<br>假设你正在做饭，期间有电话打进来（收到一个电话信号），此时你有三种回应，</p>
+<ol>
+<li>挂断电话，相当于执行了SIG_ING动作</li>
+<li>无视电话，此时手机会执行一个默认动作就是挂机，然后显示未接电话，相当于执行了SIG_DEF动作（挂断，生成core文件）</li>
+<li>接听电话，此时手机就需要你说话的功能（相当于系统调用用户处理函数），当你说完以后执行了挂机操作（相当于调用了sigreturn,返回内核），手机执行挂机操作，然后显示挂机成功（相当于调用，sys_sigreturn）,此时的你又回到厨房继续做饭。</li>
+</ol>
+</blockquote>
+<h3 id="实例一（信号屏蔽字）"><a href="#实例一（信号屏蔽字）" class="headerlink" title="实例一（信号屏蔽字）"></a><a href="#实例一（信号屏蔽字）" title="实例一（信号屏蔽字）"></a>实例一（信号屏蔽字）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printsigset</span><span class="params">(<span class="keyword">const</span> <span class="keyword">sigset_t</span>* <span class="built_in">set</span>)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; <span class="number">32</span>; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(i % <span class="number">4</span> == <span class="number">0</span>)&#123; </div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘ ‘</span>);</div><div class="line">        &#125;   </div><div class="line">        <span class="keyword">if</span>(sigismember(<span class="built_in">set</span>, i) == <span class="number">1</span>)&#123; </div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘1’</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘0’</span>);</div><div class="line">        &#125;   </div><div class="line">    &#125;   </div><div class="line">    <span class="built_in">puts</span>(<span class="string">“”</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">sigset_t</span> s, p;</div><div class="line">    <span class="comment">//1.清空信号集</span></div><div class="line">    sigemptyset(&amp;s);</div><div class="line">    <span class="comment">//2.添加信号到信号集</span></div><div class="line">    sigaddset(&amp;s, SIGINT);</div><div class="line">    sigaddset(&amp;s, SIGQUIT);</div><div class="line">    <span class="comment">//3.设置信号集到阻塞信号集</span></div><div class="line">    sigprocmask(SIG_BLOCK, &amp;s, <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</div><div class="line">        <span class="comment">//1.获取未决信号集</span></div><div class="line">        sigpending(&amp;p);</div><div class="line">        <span class="comment">//2.打印未决信号集</span></div><div class="line">        printsigset(&amp;p);</div><div class="line">        sleep(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<h3 id="实例二（信号捕捉函数）"><a href="#实例二（信号捕捉函数）" class="headerlink" title="实例二（信号捕捉函数）"></a><a href="#实例二（信号捕捉函数）" title="实例二（信号捕捉函数）"></a>实例二（信号捕捉函数）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sig</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">“ i am do_sig, handing %d\n”</span>, num);</div><div class="line">    sleep(<span class="number">15</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printsigset</span><span class="params">(<span class="keyword">const</span> <span class="keyword">sigset_t</span>* <span class="built_in">set</span>)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; <span class="number">32</span>; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(sigismember(<span class="built_in">set</span>, i) == <span class="number">1</span>)&#123; </div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘1’</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘0’</span>);</div><div class="line">        &#125;   </div><div class="line">        <span class="keyword">if</span>(i % <span class="number">4</span> == <span class="number">0</span>)&#123; </div><div class="line">            <span class="built_in">putchar</span>(<span class="string">‘ ‘</span>);</div><div class="line">        &#125;   </div><div class="line">    &#125;   </div><div class="line">    <span class="built_in">puts</span>(<span class="string">“”</span>);</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.设置捕捉函数</span></div><div class="line">    <span class="comment">//创建一个sigaction变量</span></div><div class="line">    <span class="keyword">struct</span> sigaction act;</div><div class="line">    <span class="comment">//指定处理函</span></div><div class="line">    act.sa_handler = do_sig;</div><div class="line">    <span class="comment">//零时清空,信号屏蔽字</span></div><div class="line">    sigemptyset(&amp;act.sa_mask);</div><div class="line">    <span class="comment">//调用sigaction捕捉函数，将包含捕捉函数的act变量传入，实现函数捕捉功能</span></div><div class="line">    sigaction(SIGINT, &amp;act, <span class="literal">NULL</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//2.设置信号屏蔽字</span></div><div class="line">    <span class="comment">////定义一个信号集</span></div><div class="line">    <span class="keyword">sigset_t</span> <span class="built_in">set</span>, p;</div><div class="line">    <span class="comment">//清空信号集</span></div><div class="line">    sigemptyset(&amp;<span class="built_in">set</span>);</div><div class="line">    <span class="comment">//向信号集添加一个信号SIGINT</span></div><div class="line">    <span class="comment">//sigaddset(&amp;set, SIGINT);</span></div><div class="line">    sigaddset(&amp;<span class="built_in">set</span>, SIGQUIT);</div><div class="line">    <span class="comment">//将信号集应用到信号阻塞集</span></div><div class="line">    sigprocmask(SIG_BLOCK, &amp;<span class="built_in">set</span>, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</div><div class="line">        <span class="comment">//获取未决信号集</span></div><div class="line">        sigpending(&amp;p);</div><div class="line">        printsigset(&amp;p);</div><div class="line">        sleep(<span class="number">1</span>);</div><div class="line">    &#125;   </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<h3 id="实例三（sigchild-c）"><a href="#实例三（sigchild-c）" class="headerlink" title="实例三（sigchild.c）"></a><a href="#实例三（sigchild-c）" title="实例三（sigchild.c）"></a>实例三（sigchild.c）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sig_child</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">    <span class="keyword">pid_t</span> pid;</div><div class="line">    <span class="keyword">int</span> status;</div><div class="line">    <span class="comment">//此处必须加while循环，否则会出现僵尸进程</span></div><div class="line">    <span class="comment">//信号不支持排队，当正在执行SIGCHLD捕捉函数时，在过来一个或多个SIGCHLD信号怎么不？</span></div><div class="line">    <span class="comment">//所以使用轮询解决</span></div><div class="line">    <span class="keyword">while</span>((pid = waitpid(<span class="number">0</span>, &amp;status, WNOHANG)) &gt; <span class="number">0</span>)&#123; </div><div class="line">        <span class="keyword">if</span>(WIFEXITED(status))&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">“current pid %d child %d exit %d\n”</span>, getpid(), pid, WEXITSTATUS(status));</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(WIFSIGNALED(status))&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">“child %d cancel signal %d\n”</span>, pid, WTERMSIG(status));</div><div class="line">        &#125;   </div><div class="line">    &#125;   </div><div class="line">    <span class="built_in">printf</span>(<span class="string">“<strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong>pid %d\n”</span>, pid);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">pid_t</span> pid;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="comment">//阻塞SIGCHLD信号，解决时序竞态产生的bug</span></div><div class="line">    <span class="keyword">sigset_t</span> <span class="built_in">set</span>, oldset;</div><div class="line">    sigemptyset(&amp;<span class="built_in">set</span>);</div><div class="line">    sigaddset(&amp;<span class="built_in">set</span>, SIGCHLD);</div><div class="line">    sigprocmask(SIG_BLOCK, &amp;<span class="built_in">set</span>, &amp;oldset);</div><div class="line">    <span class="comment">//创建10个子进程</span></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">        <span class="keyword">if</span>((pid = fork()) == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid &lt; <span class="number">0</span>)&#123;</div><div class="line">            perror(<span class="string">“fork”</span>);</div><div class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//子进程</span></div><div class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">int</span> n = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(n–)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">“child ID %d\n”</span>, getpid());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> i;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</div><div class="line">        sleep(<span class="number">1</span>);</div><div class="line">        <span class="comment">//捕捉SIGCHLD信号，回收子进程</span></div><div class="line">        <span class="comment">//1.定义一个sigaction变量</span></div><div class="line">        <span class="keyword">struct</span> sigaction act;</div><div class="line">        <span class="comment">//2.设置捕捉函数</span></div><div class="line">        act.sa_handler = do_sig_child;</div><div class="line">        <span class="comment">//3.情况屏蔽字</span></div><div class="line">        sigemptyset(&amp;act.sa_mask);</div><div class="line">        <span class="comment">//sigaddset(&amp;act.sa_mask, SIGCHLD);</span></div><div class="line">        <span class="comment">//通过sigaction函数，设置要捕捉的信号，及捕捉函数</span></div><div class="line">        sigaction(SIGCHLD, &amp;act, <span class="literal">NULL</span>);</div><div class="line">        <span class="comment">//解除对SIGCHLD信号的阻塞，解决时序竞态产生的bug</span></div><div class="line">        sigprocmask(SIG_SETMASK, &amp;oldset, <span class="literal">NULL</span>);</div><div class="line">        <span class="comment">//此时的父进程就无需轮询等待回收子进程了，可以做其他事情</span></div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">“parent ID %d\n”</span>, getpid());</div><div class="line">            sleep(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eregg.com/2016/11/22/signal信号/" data-id="cj7us2afw00056zgw2rjv0vae" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/signal/">signal</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信号/">信号</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信号屏蔽字/">信号屏蔽字</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信号捕捉动作/">信号捕捉动作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机/">计算机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/22/zookeeper/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          zookeeper
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/22/C线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">C线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LoadBalance/">LoadBalance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReverseProxy/">ReverseProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pthread/">pthread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/signal/">signal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中庸/">中庸</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互斥量/">互斥量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号/">信号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号屏蔽字/">信号屏蔽字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号捕捉动作/">信号捕捉动作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号量/">信号量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全文检索/">全文检索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/哲学/">哲学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国学/">国学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图状结构/">图状结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/条件变量/">条件变量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性结构/">线性结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程同步/">线程同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读写锁/">读写锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链式存储结构/">链式存储结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/顺序存储结构/">顺序存储结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/LoadBalance/" style="font-size: 10px;">LoadBalance</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lucene/" style="font-size: 10px;">lucene</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/pthread/" style="font-size: 15px;">pthread</a> <a href="/tags/signal/" style="font-size: 10px;">signal</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中庸/" style="font-size: 10px;">中庸</a> <a href="/tags/互斥量/" style="font-size: 10px;">互斥量</a> <a href="/tags/信号/" style="font-size: 10px;">信号</a> <a href="/tags/信号屏蔽字/" style="font-size: 10px;">信号屏蔽字</a> <a href="/tags/信号捕捉动作/" style="font-size: 10px;">信号捕捉动作</a> <a href="/tags/信号量/" style="font-size: 10px;">信号量</a> <a href="/tags/全文检索/" style="font-size: 10px;">全文检索</a> <a href="/tags/哲学/" style="font-size: 15px;">哲学</a> <a href="/tags/国学/" style="font-size: 15px;">国学</a> <a href="/tags/图状结构/" style="font-size: 10px;">图状结构</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/条件变量/" style="font-size: 10px;">条件变量</a> <a href="/tags/树形结构/" style="font-size: 10px;">树形结构</a> <a href="/tags/线性结构/" style="font-size: 10px;">线性结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/线程同步/" style="font-size: 10px;">线程同步</a> <a href="/tags/计算机/" style="font-size: 20px;">计算机</a> <a href="/tags/读写锁/" style="font-size: 10px;">读写锁</a> <a href="/tags/链式存储结构/" style="font-size: 10px;">链式存储结构</a> <a href="/tags/集合/" style="font-size: 10px;">集合</a> <a href="/tags/顺序存储结构/" style="font-size: 10px;">顺序存储结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/22/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/Lucene核心API/">Lucene核心API</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/zookeeper/">zookeeper</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/signal信号/">signal信号</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/C线程/">C线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eregg<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

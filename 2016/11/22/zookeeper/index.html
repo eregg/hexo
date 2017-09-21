@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>zookeeper | 学不可以已</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="zookeeper概述什么是zookpeer zookpeer是一个项目协调框架，分布式应用可以基于它实现同步服务。  zookpeer可以做什么 为分布式应用提供集群协调服务 为客户端保存数据，提供监听 具体案例如：Hadoop2.0,使用Zookeeper的事件处理确保整个集群只有一个活跃的NameNode,存储配置信息等.HBase,使用Zookeeper的事件处理确保整个集群只有一个HMa">
+<meta name="keywords" content="计算机,zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper">
+<meta property="og:url" content="http://eregg.com/2016/11/22/zookeeper/index.html">
+<meta property="og:site_name" content="学不可以已">
+<meta property="og:description" content="zookeeper概述什么是zookpeer zookpeer是一个项目协调框架，分布式应用可以基于它实现同步服务。  zookpeer可以做什么 为分布式应用提供集群协调服务 为客户端保存数据，提供监听 具体案例如：Hadoop2.0,使用Zookeeper的事件处理确保整个集群只有一个活跃的NameNode,存储配置信息等.HBase,使用Zookeeper的事件处理确保整个集群只有一个HMa">
+<meta property="og:updated_time" content="2017-09-21T18:14:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zookeeper">
+<meta name="twitter:description" content="zookeeper概述什么是zookpeer zookpeer是一个项目协调框架，分布式应用可以基于它实现同步服务。  zookpeer可以做什么 为分布式应用提供集群协调服务 为客户端保存数据，提供监听 具体案例如：Hadoop2.0,使用Zookeeper的事件处理确保整个集群只有一个活跃的NameNode,存储配置信息等.HBase,使用Zookeeper的事件处理确保整个集群只有一个HMa">
+  
+    <link rel="alternate" href="/atom.xml" title="学不可以已" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学不可以已</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">青，取之于蓝，而青于蓝</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eregg.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/22/zookeeper/" class="article-date">
+  <time datetime="2016-11-22T01:40:44.000Z" itemprop="datePublished">2016-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      zookeeper
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="zookeeper概述"><a href="#zookeeper概述" class="headerlink" title="zookeeper概述"></a><a href="#zookeeper概述" title="zookeeper概述"></a>zookeeper概述</h4><h5 id="什么是zookpeer"><a href="#什么是zookpeer" class="headerlink" title="什么是zookpeer"></a><a href="#什么是zookpeer" title="什么是zookpeer"></a>什么是zookpeer</h5><blockquote>
+<p>zookpeer是一个项目协调框架，分布式应用可以基于它实现同步服务。</p>
+</blockquote>
+<h5 id="zookpeer可以做什么"><a href="#zookpeer可以做什么" class="headerlink" title="zookpeer可以做什么"></a><a href="#zookpeer可以做什么" title="zookpeer可以做什么"></a>zookpeer可以做什么</h5><blockquote>
+<p>为分布式应用提供集群协调服务</p>
+<p>为客户端保存数据，提供监听</p>
+<p>具体案例如：<br>Hadoop2.0,使用Zookeeper的事件处理确保整个集群只有一个活跃的NameNode,存储配置信息等.<br>HBase,使用Zookeeper的事件处理确保整个集群只有一个HMaster,察觉HRegionServer联机和宕机,存储访问控制列表等.</p>
+</blockquote>
+<h5 id="zookpeer集群机制"><a href="#zookpeer集群机制" class="headerlink" title="zookpeer集群机制"></a><a href="#zookpeer集群机制" title="zookpeer集群机制"></a>zookpeer集群机制</h5><blockquote>
+<p>半数机制：集群中半数以上机器存活，集群可用。</p>
+</blockquote>
+<h4 id="安装zookpeer"><a href="#安装zookpeer" class="headerlink" title="安装zookpeer"></a><a href="#安装zookpeer" title="安装zookpeer"></a>安装zookpeer</h4><h5 id="机器部署"><a href="#机器部署" class="headerlink" title="机器部署"></a><a href="#机器部署" title="机器部署"></a>机器部署</h5><blockquote>
+<p>安装到3台虚拟机上</p>
+</blockquote>
+<h5 id="上传"><a href="#上传" class="headerlink" title="上传"></a><a href="#上传" title="上传"></a>上传</h5><blockquote>
+<p>使用上传工具将zookeeper-3.4.5.tar.gz上传至其中一台服务器（等配置完成后再分发给其他机器）</p>
+</blockquote>
+<h5 id="解压"><a href="#解压" class="headerlink" title="解压"></a><a href="#解压" title="解压"></a>解压</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tar -zxvf zookeeper-<span class="number">3.4</span>.<span class="number">5</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> -C ~/app/</div></pre></td></tr></table></figure>
+
+<h5 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a><a href="#修改配置文件" title="修改配置文件"></a>修改配置文件</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd ~<span class="regexp">/app/</span>zookeeper-<span class="number">3.4</span>.<span class="number">5</span><span class="regexp">/conf/</span></div><div class="line">cp zoo_sample.cfg zoo.cfg</div><div class="line">vi zoo.cfg</div><div class="line"><span class="comment">#添加内容</span></div><div class="line">dataDir=<span class="regexp">/root/</span>app<span class="regexp">/zookeeper-3.4.5/</span>data</div><div class="line">dataLogDir=<span class="regexp">/root/</span>app<span class="regexp">/zookeeper-3.4.5/</span>log  (可选)</div><div class="line">server.<span class="number">1</span>= server01:<span class="number">2888</span>:<span class="number">3888</span> (心跳端口、数据端口)</div><div class="line">server.<span class="number">2</span>= server02:<span class="number">2888</span>:<span class="number">3888</span></div><div class="line">server.<span class="number">3</span>= server03:<span class="number">2888</span>:<span class="number">3888</span></div></pre></td></tr></table></figure><br>&gt; 创建文件夹mkdir  /root/app/zookeeper-3.4.5/data<br>&gt;<br>&gt; 在data文件夹下新建myid文件，myid的文件内容为<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo <span class="number">1</span> &gt; /root/app/ zookeeper<span class="number">-3.4</span><span class="number">.5</span>/data/myid</div></pre></td></tr></table></figure>
+
+<h5 id="将配置好的安装包分发到其他机器上"><a href="#将配置好的安装包分发到其他机器上" class="headerlink" title="将配置好的安装包分发到其他机器上"></a><a href="#将配置好的安装包分发到其他机器上" title="将配置好的安装包分发到其他机器上"></a>将配置好的安装包分发到其他机器上</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">scp -r <span class="regexp">/root/</span>app<span class="regexp">/zookeeper-3.4.5/</span> <span class="string">server02:</span><span class="regexp">/root/</span>app/</div><div class="line">scp -r <span class="regexp">/root/</span>app<span class="regexp">/zookeeper-3.4.5/</span> <span class="string">server03:</span><span class="regexp">/root/</span>app/</div></pre></td></tr></table></figure>
+
+<h5 id="修改其他机器的配置文件"><a href="#修改其他机器的配置文件" class="headerlink" title="修改其他机器的配置文件"></a><a href="#修改其他机器的配置文件" title="修改其他机器的配置文件"></a>修改其他机器的配置文件</h5><blockquote>
+<p>到server02上：修改myid为：2</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo <span class="number">2</span> &gt; /root/app/zookeeper<span class="number">-3.4</span><span class="number">.5</span>/data/myid</div></pre></td></tr></table></figure><br>到server03上：修改myid为：3<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo <span class="number">3</span> &gt; /root/app/zookeeper<span class="number">-3.4</span><span class="number">.5</span>/data/myid</div></pre></td></tr></table></figure>
+
+</blockquote>
+<h5 id="启动zookeeper"><a href="#启动zookeeper" class="headerlink" title="启动zookeeper"></a><a href="#启动zookeeper" title="启动zookeeper"></a>启动zookeeper</h5><blockquote>
+<p>先在各台机器上关闭防火墙</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">service</span>   iptables  stop</div><div class="line">chkconfig  iptables  <span class="literal">off</span></div></pre></td></tr></table></figure><br>到每一台服务器上启动zk的服务节点<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/root/</span>app<span class="regexp">/zookeeper-3.4.5/</span>bin<span class="regexp">/zkServer.sh start</span></div></pre></td></tr></table></figure>
+
+</blockquote>
+<h5 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a><a href="#查看集群状态" title="查看集群状态"></a>查看集群状态</h5><ol>
+<li><p>jps（查看进程）</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@server01 zookeeper<span class="number">-3.4</span><span class="number">.5</span>]# jps</div><div class="line"><span class="number">1837</span> QuorumPeerMain</div><div class="line"><span class="number">2113</span> Jps</div></pre></td></tr></table></figure>
+</li>
+<li><p>zkServer.sh status（查看集群状态，主从信息）</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@server01 zookeeper<span class="number">-3.4</span><span class="number">.5</span>]<span class="meta"># ./bin/zkServer.sh status</span></div><div class="line">JMX enabled by default</div><div class="line">Using config: <span class="meta-keyword">/root/</span>app/zookeeper<span class="number">-3.4</span><span class="number">.5</span><span class="meta-keyword">/bin/</span>..<span class="meta-keyword">/conf/</span>zoo.cfg</div><div class="line"><span class="symbol">Mode:</span> follower</div></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="zookeeper的结构和命令"><a href="#zookeeper的结构和命令" class="headerlink" title="zookeeper的结构和命令"></a><a href="#zookeeper的结构和命令" title="zookeeper的结构和命令"></a>zookeeper的结构和命令</h4><h5 id="zookeeper数据结构"><a href="#zookeeper数据结构" class="headerlink" title="zookeeper数据结构"></a><a href="#zookeeper数据结构" title="zookeeper数据结构"></a>zookeeper数据结构</h5><ol>
+<li>层次化的目录结构，命名符合常规文件系统规范</li>
+<li>每个节点在zookeeper中叫做znode,并且其有一个唯一的路径标识</li>
+<li>节点Znode可以包含数据和子节点</li>
+<li>客户端应用可以在节点上设置监视器</li>
+</ol>
+<h5 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a><a href="#节点类型" title="节点类型"></a>节点类型</h5><blockquote>
+<p>Znode有两种类型：</p>
+</blockquote>
+<ol>
+<li>短暂（ephemeral）（客户端断开连接，zookeeper会帮客户端把znode删除）</li>
+<li>持久（persistent）（断开连接不删除）<blockquote>
+<p>Znode有四种形式的目录节点（默认是persistent ）</p>
+<ol>
+<li>PERSISTENT</li>
+<li>PERSISTENT_SEQUENTIAL（持久序列/test0000000019 ）</li>
+<li>EPHEMERAL</li>
+<li>EPHEMERAL_SEQUENTIAL</li>
+</ol>
+<p>创建znode时设置顺序标识，znode名称后会附加一个值<br>顺序号是一个单调递增的计数器，由父节点维护<br>在分布式系统中，顺序号可以被用于为所有的事件进行全局排序，这样客户端可以通过顺序号推断事件的顺序</p>
+</blockquote>
+</li>
+</ol>
+<h5 id="zookeeper特性"><a href="#zookeeper特性" class="headerlink" title="zookeeper特性"></a><a href="#zookeeper特性" title="zookeeper特性"></a>zookeeper特性</h5><ul>
+<li>Zookeeper：一个leader，多个follower组成的集群</li>
+<li>全局数据一致：每个server保存一份相同的数据副本，client无论连接到哪个server，数据都是一致的</li>
+<li>分布式读写，更新请求转发，由leader实施</li>
+<li>更新请求顺序进行，来自同一个client的更新请求按其发送顺序依次执行</li>
+<li>数据更新原子性，一次数据更新要么成功，要么失败</li>
+<li>实时性，在一定时间范围内，client能读到最新数据</li>
+</ul>
+<h5 id="zookpeer命令操作"><a href="#zookpeer命令操作" class="headerlink" title="zookpeer命令操作"></a><a href="#zookpeer命令操作" title="zookpeer命令操作"></a>zookpeer命令操作</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[zk: localhost:2181(CONNECTED) 0] <span class="keyword">help</span></div><div class="line">ZooKeeper -<span class="keyword">server</span> host:port cmd args</div><div class="line">    <span class="keyword">connect</span> host:port</div><div class="line">    <span class="keyword">get</span> <span class="keyword">path</span> [watch]</div><div class="line">    ls <span class="keyword">path</span> [watch]</div><div class="line">    <span class="keyword">set</span> <span class="keyword">path</span> <span class="keyword">data</span> [<span class="keyword">version</span>]</div><div class="line">    rmr <span class="keyword">path</span></div><div class="line">    delquota [-n|-b] <span class="keyword">path</span></div><div class="line">    quit </div><div class="line">    printwatches <span class="keyword">on</span>|<span class="keyword">off</span></div><div class="line">    <span class="keyword">create</span> [-s] [-e] <span class="keyword">path</span> <span class="keyword">data</span> acl </div><div class="line">    stat <span class="keyword">path</span> [watch]</div><div class="line">    <span class="keyword">close</span> </div><div class="line">    ls2 <span class="keyword">path</span> [watch]</div><div class="line">    history </div><div class="line">    listquota <span class="keyword">path</span></div><div class="line">    setAcl <span class="keyword">path</span> acl</div><div class="line">    getAcl <span class="keyword">path</span></div><div class="line">    <span class="keyword">sync</span> <span class="keyword">path</span></div><div class="line">    <span class="keyword">redo</span> cmdno</div><div class="line">    addauth scheme auth</div><div class="line">    <span class="keyword">delete</span> <span class="keyword">path</span> [<span class="keyword">version</span>]</div><div class="line">    setquota -n|-b val <span class="keyword">path</span></div></pre></td></tr></table></figure><br>&gt; create [-s] [-e] path data acl<br>&gt;<br>&gt; -s：sequential序列节点：会在全局维护一个序列号<br>&gt; Zk会为sequential类节点维护一个全局序列号<br>&gt;<br>&gt; -e：短暂的。 不带参数就是非短暂的<br>&gt;<br>&gt; <em>   短暂的znode（创建者客户端一旦断开连接，zk就会删除这个节点）<br>&gt; </em>   持久的znode（不管创建者客户端是否断开，znode一致存在，除非手动删除）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">创建短暂非序列化节点：<span class="_">-e</span></div><div class="line">创建短暂序列化：<span class="_">-s</span>  –e</div><div class="line">创建持久非序列化：空</div><div class="line">创建持久序列化：<span class="_">-s</span></div></pre></td></tr></table></figure>
+
+<ol>
+<li><p>使用 ls 命令来查看当前 ZooKeeper 中所包含的内容：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="name">zk:</span> localhost:2181(<span class="name">CONNECTED</span>) <span class="number">2</span>] ls /</div><div class="line">[<span class="name">test</span>, test2, zookeeper]</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个新的 znode ，使用 create /myData 。这个命令创建了一个新的 znode 节点“ zk ”以及与它关联的字符串：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[zk: <span class="type">localhost</span>:<span class="number">2181</span>(CONNECTED) <span class="number">0</span>] create /<span class="keyword">new</span><span class="type">node</span> nodedata</div><div class="line">Created /<span class="keyword">new</span><span class="type">node</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>我们运行 get 命令来确认 znode 是否包含我们所创建的字符串：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[zk: localhost:2181(CONNECTED) 2] get /newnode</div><div class="line">nodedata</div><div class="line">cZxid = 0x200000040</div><div class="line">ctime = Wed Jul 06 14:13:40 EDT 2016</div><div class="line">mZxid = 0x200000040</div><div class="line">mtime = Wed Jul 06 14:13:40 EDT 2016</div><div class="line">pZxid = 0x200000040</div><div class="line">cversion = 0</div><div class="line">dataVersion = 0</div><div class="line">aclVersion = 0</div><div class="line">ephemeralOwner = 0x0</div><div class="line">dataLength = 8</div><div class="line">numChildren = 0</div></pre></td></tr></table></figure>
+</li>
+<li><p>下面我们通过 set 命令来对 zk 所关联的字符串进行设置：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[zk: localhost:2181(CONNECTED) 3] set /newnode updatevalue</div><div class="line">cZxid = 0x200000040</div><div class="line">ctime = Wed Jul 06 14:13:40 EDT 2016</div><div class="line">mZxid = 0x200000041</div><div class="line">mtime = Wed Jul 06 14:14:39 EDT 2016</div><div class="line">pZxid = 0x200000040</div><div class="line">cversion = 0</div><div class="line">dataVersion = 1</div><div class="line">aclVersion = 0</div><div class="line">ephemeralOwner = 0x0</div><div class="line">dataLength = 11</div><div class="line">numChildren = 0</div></pre></td></tr></table></figure>
+</li>
+<li><p>下面我们将刚才创建的 znode 删除：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="name">zk:</span> localhost:2181(<span class="name">CONNECTED</span>) <span class="number">6</span>] delete /newnode</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eregg.com/2016/11/22/zookeeper/" data-id="cj7us2afv00046zgwdl9d70n7" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机/">计算机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/22/Lucene核心API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Lucene核心API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/22/signal信号/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">signal信号</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LoadBalance/">LoadBalance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReverseProxy/">ReverseProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pthread/">pthread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/signal/">signal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中庸/">中庸</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互斥量/">互斥量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号/">信号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号屏蔽字/">信号屏蔽字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号捕捉动作/">信号捕捉动作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号量/">信号量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全文检索/">全文检索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/哲学/">哲学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国学/">国学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图状结构/">图状结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/条件变量/">条件变量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性结构/">线性结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程同步/">线程同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读写锁/">读写锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链式存储结构/">链式存储结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/顺序存储结构/">顺序存储结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/LoadBalance/" style="font-size: 10px;">LoadBalance</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lucene/" style="font-size: 10px;">lucene</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/pthread/" style="font-size: 15px;">pthread</a> <a href="/tags/signal/" style="font-size: 10px;">signal</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中庸/" style="font-size: 10px;">中庸</a> <a href="/tags/互斥量/" style="font-size: 10px;">互斥量</a> <a href="/tags/信号/" style="font-size: 10px;">信号</a> <a href="/tags/信号屏蔽字/" style="font-size: 10px;">信号屏蔽字</a> <a href="/tags/信号捕捉动作/" style="font-size: 10px;">信号捕捉动作</a> <a href="/tags/信号量/" style="font-size: 10px;">信号量</a> <a href="/tags/全文检索/" style="font-size: 10px;">全文检索</a> <a href="/tags/哲学/" style="font-size: 15px;">哲学</a> <a href="/tags/国学/" style="font-size: 15px;">国学</a> <a href="/tags/图状结构/" style="font-size: 10px;">图状结构</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/条件变量/" style="font-size: 10px;">条件变量</a> <a href="/tags/树形结构/" style="font-size: 10px;">树形结构</a> <a href="/tags/线性结构/" style="font-size: 10px;">线性结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/线程同步/" style="font-size: 10px;">线程同步</a> <a href="/tags/计算机/" style="font-size: 20px;">计算机</a> <a href="/tags/读写锁/" style="font-size: 10px;">读写锁</a> <a href="/tags/链式存储结构/" style="font-size: 10px;">链式存储结构</a> <a href="/tags/集合/" style="font-size: 10px;">集合</a> <a href="/tags/顺序存储结构/" style="font-size: 10px;">顺序存储结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/22/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/Lucene核心API/">Lucene核心API</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/zookeeper/">zookeeper</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/signal信号/">signal信号</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/C线程/">C线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eregg<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

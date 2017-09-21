@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nginx反向代理与负载均衡 | 学不可以已</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是反向代理反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。 什么是负载均衡负载均衡，英文名称为Load Balance，是指建立在现有网络结构之上，并提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加">
+<meta name="keywords" content="计算机,nginx,ReverseProxy,LoadBalance">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx反向代理与负载均衡">
+<meta property="og:url" content="http://eregg.com/2016/11/22/nginx反向代理与负载均衡/index.html">
+<meta property="og:site_name" content="学不可以已">
+<meta property="og:description" content="什么是反向代理反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。 什么是负载均衡负载均衡，英文名称为Load Balance，是指建立在现有网络结构之上，并提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加">
+<meta property="og:image" content="http://123.57.181.198/images/linux/reverseproxy.jpg">
+<meta property="og:image" content="http://123.57.181.198/images/linux/loadbalance.jpg">
+<meta property="og:updated_time" content="2017-09-21T18:14:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx反向代理与负载均衡">
+<meta name="twitter:description" content="什么是反向代理反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。 什么是负载均衡负载均衡，英文名称为Load Balance，是指建立在现有网络结构之上，并提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加">
+<meta name="twitter:image" content="http://123.57.181.198/images/linux/reverseproxy.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="学不可以已" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学不可以已</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">青，取之于蓝，而青于蓝</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eregg.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nginx反向代理与负载均衡" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/22/nginx反向代理与负载均衡/" class="article-date">
+  <time datetime="2016-11-22T01:39:10.000Z" itemprop="datePublished">2016-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx反向代理与负载均衡
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a><a href="#什么是反向代理" title="什么是反向代理"></a>什么是反向代理</h3><p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。<br><img src="http://123.57.181.198/images/linux/reverseproxy.jpg" alt="反向代理"></p>
+<h3 id="什么是负载均衡"><a href="#什么是负载均衡" class="headerlink" title="什么是负载均衡"></a><a href="#什么是负载均衡" title="什么是负载均衡"></a>什么是负载均衡</h3><p>负载均衡，英文名称为Load Balance，是指建立在现有网络结构之上，并提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。其原理就是数据流量分摊到多个服务器上执行，减轻每台服务器的压力，多台服务器共同完成工作任务，从而提高了数据的吞吐量。<br><img src="http://123.57.181.198/images/linux/loadbalance.jpg" alt="负载均衡"></p>
+<h3 id="Nginx的安装"><a href="#Nginx的安装" class="headerlink" title="Nginx的安装"></a><a href="#Nginx的安装" title="Nginx的安装"></a>Nginx的安装</h3><h4 id="下载nginx"><a href="#下载nginx" class="headerlink" title="下载nginx"></a><a href="#下载nginx" title="下载nginx"></a>下载nginx</h4><p>官网：<a href="http://nginx.org/" target="_blank" rel="external">http://nginx.org/</a></p>
+<h4 id="上传并解压nginx"><a href="#上传并解压nginx" class="headerlink" title="上传并解压nginx"></a><a href="#上传并解压nginx" title="上传并解压nginx"></a>上传并解压nginx</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf nginx-1.8.1.tar.gz -C /usr/<span class="built_in">local</span>/src</div></pre></td></tr></table></figure>
+
+<h4 id="编译nginx"><a href="#编译nginx" class="headerlink" title="编译nginx"></a><a href="#编译nginx" title="编译nginx"></a>编译nginx</h4><p>#进入到nginx源码目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src nginx-1.8.1</div></pre></td></tr></table></figure>
+
+<p>#检查安装环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure –prefix=/usr/<span class="built_in">local</span>/nginx</div></pre></td></tr></table></figure>
+
+<p>#缺包报错 ./configure: error: C compiler cc is not found</p>
+<p>#使用YUM安装缺少的包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc pcre-devel openssl openssl-devel</div></pre></td></tr></table></figure>
+
+<p>#编译安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+
+<h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a><a href="#配置nginx" title="配置nginx"></a>配置nginx</h3><h4 id="配置反向代理"><a href="#配置反向代理" class="headerlink" title="配置反向代理"></a><a href="#配置反向代理" title="配置反向代理"></a>配置反向代理</h4><p>修改nginx配置文件</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       <span class="number">80</span>;</div><div class="line">    server_namenx-<span class="number">01</span>.itcast.cn;</div><div class="line">    <span class="keyword">location</span> <span class="title">/ &#123;</span></div><div class="line">        root html;</div><div class="line">        proxy_pass http://<span class="number">192.168</span>.<span class="number">0.21</span>:<span class="number">8080</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<h4 id="配置负载均衡"><a href="#配置负载均衡" class="headerlink" title="配置负载均衡"></a><a href="#配置负载均衡" title="配置负载均衡"></a>配置负载均衡</h4><p>在http这个节下面配置一个叫upstream的，后面的名字可以随意取，但是要和location下的proxy_pass <a href="http://后的保持一致。" target="_blank" rel="external">http://后的保持一致。</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">upstream</span> tomcats &#123; </div><div class="line">        <span class="attribute">server</span> <span class="number">192.168.0.101</span> weight=<span class="number">1</span>;</div><div class="line">        <span class="attribute">server</span> <span class="number">192.168.0.102</span> weight=<span class="number">1</span>;</div><div class="line">        <span class="attribute">server</span> <span class="number">192.168.0.103</span> weight=<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ .*.(jsp|do|action)</span> &#123;</div><div class="line">        <span class="attribute">proxy_pass</span> <a href="http://tomcats" target="_blank" rel="external">http://tomcats</a>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eregg.com/2016/11/22/nginx反向代理与负载均衡/" data-id="cj7us2afq00016zgwpn25ngrz" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LoadBalance/">LoadBalance</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReverseProxy/">ReverseProxy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机/">计算机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/22/多线程同步/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          多线程同步
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/22/制作本地yum/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">制作本地yum</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LoadBalance/">LoadBalance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReverseProxy/">ReverseProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pthread/">pthread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/signal/">signal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中庸/">中庸</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互斥量/">互斥量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号/">信号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号屏蔽字/">信号屏蔽字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号捕捉动作/">信号捕捉动作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信号量/">信号量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全文检索/">全文检索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/哲学/">哲学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国学/">国学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图状结构/">图状结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/条件变量/">条件变量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性结构/">线性结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程同步/">线程同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读写锁/">读写锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链式存储结构/">链式存储结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/顺序存储结构/">顺序存储结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/LoadBalance/" style="font-size: 10px;">LoadBalance</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lucene/" style="font-size: 10px;">lucene</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/pthread/" style="font-size: 15px;">pthread</a> <a href="/tags/signal/" style="font-size: 10px;">signal</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中庸/" style="font-size: 10px;">中庸</a> <a href="/tags/互斥量/" style="font-size: 10px;">互斥量</a> <a href="/tags/信号/" style="font-size: 10px;">信号</a> <a href="/tags/信号屏蔽字/" style="font-size: 10px;">信号屏蔽字</a> <a href="/tags/信号捕捉动作/" style="font-size: 10px;">信号捕捉动作</a> <a href="/tags/信号量/" style="font-size: 10px;">信号量</a> <a href="/tags/全文检索/" style="font-size: 10px;">全文检索</a> <a href="/tags/哲学/" style="font-size: 15px;">哲学</a> <a href="/tags/国学/" style="font-size: 15px;">国学</a> <a href="/tags/图状结构/" style="font-size: 10px;">图状结构</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/条件变量/" style="font-size: 10px;">条件变量</a> <a href="/tags/树形结构/" style="font-size: 10px;">树形结构</a> <a href="/tags/线性结构/" style="font-size: 10px;">线性结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/线程同步/" style="font-size: 10px;">线程同步</a> <a href="/tags/计算机/" style="font-size: 20px;">计算机</a> <a href="/tags/读写锁/" style="font-size: 10px;">读写锁</a> <a href="/tags/链式存储结构/" style="font-size: 10px;">链式存储结构</a> <a href="/tags/集合/" style="font-size: 10px;">集合</a> <a href="/tags/顺序存储结构/" style="font-size: 10px;">顺序存储结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/22/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/Lucene核心API/">Lucene核心API</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/zookeeper/">zookeeper</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/signal信号/">signal信号</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/22/C线程/">C线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eregg<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
